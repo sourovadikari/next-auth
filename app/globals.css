@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+/* globals.css or your main CSS file */
+
+/* Hide the default eye icon in password fields for Webkit browsers (Chrome, Safari) */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+input[type="password"]::-webkit-contacts-auto-fill-button,
+input[type="password"]::-webkit-credentials-auto-fill-button {
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+}
+
+/* For Firefox, the eye icon is typically part of the browser's UI and harder to hide directly with CSS.
+   If it persists, you might need to rely on the 'autocomplete="new-password"' or 'autocomplete="off"'
+   attributes on the input field, which you already have. */
+
+/* Optional: If you want to hide the clear button (X) on text inputs as well */
+input[type="text"]::-ms-clear {
+    display: none;
+}
