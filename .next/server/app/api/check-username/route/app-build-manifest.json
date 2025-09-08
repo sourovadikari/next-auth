@@ -1,0 +1,12 @@
+{
+  "pages": {
+    "/api/check-username/route": [
+      "static/chunks/695ecfda1b2c91e6.js",
+      "static/chunks/522518d740397639.js",
+      "static/chunks/2008ffcf9e5b170c.js",
+      "static/chunks/c19da6693934fea1.js",
+      "static/chunks/8082ab48faca5ea1.js",
+      "static/chunks/turbopack-2698af7afbad6207.js"
+    ]
+  }
+}
