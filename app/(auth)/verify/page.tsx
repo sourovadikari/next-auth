@@ -6,7 +6,7 @@ import axios from "axios";
 import { StatusMessage } from "@/components/Model";
 
 // Actual verification logic
-export function VerifyContent() {
+function VerifyContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const token = searchParams.get("token");
@@ -82,3 +82,4 @@ export default function VerifyPage() {
     </Suspense>
   );
 }
+
