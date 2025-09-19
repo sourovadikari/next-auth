@@ -1,5 +1,6 @@
 import { AuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import { connectToDatabase } from "@/lib/db";
@@ -101,6 +102,10 @@ export const authOptions: AuthOptions = {
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
+    GoogleProvider({
+      clientId: process.env.GCI!,
+      clientSecret: process.env.GCS!,
+    }),
   ],
 
   callbacks: {
@@ -129,7 +134,7 @@ export const authOptions: AuthOptions = {
       await connectToDatabase();
 
       // ✅ GitHub login - ensure user is created or marked verified
-      if (account?.provider === "github") {
+      if (account?.provider === "github" || account?.provider === "google") {
         const email = user.email;
         if (!email) return false;
 
