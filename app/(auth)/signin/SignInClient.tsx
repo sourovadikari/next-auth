@@ -33,6 +33,8 @@ export default function SignInClient() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isGitHubLoading, setIsGitHubLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+
 
   const [inlineError, setInlineError] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
@@ -110,12 +112,12 @@ export default function SignInClient() {
   }
 
   async function handleGoogleSignIn() {
-    setIsGitHubLoading(true);
+    setIsGoogleLoading(true);
     try {
       await signIn("google", { callbackUrl });
     } catch (error) {
-      console.error("GitHub sign in error:", error);
-      setIsGitHubLoading(false);
+      console.error("Google sign in error:", error);
+      setIsGoogleLoading(false);
     }
   }
   
@@ -206,12 +208,12 @@ export default function SignInClient() {
       </Button>
 <Button
         variant="outline"
-        className="w-full flex items-center justify-center gap-2"
+        className="w-full flex items-center justify-center gap-2 mt-2"
         onClick={handleGoogleSignIn}
         disabled={isLoading || isGitHubLoading}
       >
-        <Github className="w-5 h-5" />
-        {isGitHubLoading ? "Connecting..." : "Continue with GitHub"}
+        
+        {isGoogleLoading ? "Connecting..." : "Continue with Google"}
       </Button>
       
       <p className="mt-6 text-center text-sm text-muted-foreground">
@@ -236,4 +238,5 @@ export default function SignInClient() {
     </div>
   );
 }
+
 
