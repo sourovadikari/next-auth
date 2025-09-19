@@ -52,6 +52,7 @@ export default function SignupPage() {
   const [popupOpen, setPopupOpen] = useState(false);
   const [popupMessage, setPopupMessage] = useState<React.ReactNode>("");
   const [isGitHubLoading, setIsGitHubLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   // Debounced email availability check
   const checkEmailAvailability = useMemo(
@@ -151,6 +152,16 @@ export default function SignupPage() {
     } catch (error) {
       console.error("GitHub sign up error:", error);
       setIsGitHubLoading(false);
+    }
+  }
+
+  async function handleGoogleSignUpButton() {
+    setIsGoogleLoading(true);
+    try {
+      await signIn("google", { callbackUrl: "/" });
+    } catch (error) {
+      console.error("Google sign up error:", error);
+      setIsGoogleLoading(false)
     }
   }
 
@@ -303,6 +314,12 @@ export default function SignupPage() {
             >
               <Github className="w-5 h-5" />
               {isGitHubLoading ? "Connecting..." : "Sign up with GitHub"}
+            </Button>
+
+            <Button type="button" variant="outline" className="mt-2 w-full flex items-centet justify-center gap-2"
+            onClick={handleGoogleSignUpButton}
+            disabled={isLoading || isGoogleLoading}>
+              {isGoogleLoading ? "connecting..." : "Sign up with Google"}
             </Button>
 
 
