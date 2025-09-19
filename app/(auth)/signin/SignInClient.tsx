@@ -109,6 +109,16 @@ export default function SignInClient() {
     }
   }
 
+  async function handleGoogleSignIn() {
+    setIsGitHubLoading(true);
+    try {
+      await signIn("google", { callbackUrl });
+    } catch (error) {
+      console.error("GitHub sign in error:", error);
+      setIsGitHubLoading(false);
+    }
+  }
+  
   return (
     <div className="max-w-lg mx-auto p-8 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl">
       <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-8">
@@ -194,7 +204,16 @@ export default function SignInClient() {
         <Github className="w-5 h-5" />
         {isGitHubLoading ? "Connecting..." : "Continue with GitHub"}
       </Button>
-
+<Button
+        variant="outline"
+        className="w-full flex items-center justify-center gap-2"
+        onClick={handleGoogleSignIn}
+        disabled={isLoading || isGitHubLoading}
+      >
+        <Github className="w-5 h-5" />
+        {isGitHubLoading ? "Connecting..." : "Continue with GitHub"}
+      </Button>
+      
       <p className="mt-6 text-center text-sm text-muted-foreground">
         Don’t have an account?{" "}
         <Link href="/signup" className="text-primary underline">
@@ -217,3 +236,4 @@ export default function SignInClient() {
     </div>
   );
 }
+
